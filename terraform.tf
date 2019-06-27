@@ -9,7 +9,7 @@
 	}
 resource "azurerm_resource_group" "dev" {
   name     = "aelementterraform"
-  location = "West Europe"
+  location = "West Us"
 }
 
 resource "azurerm_app_service_plan" "dev" {
