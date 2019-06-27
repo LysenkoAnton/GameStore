@@ -7,6 +7,13 @@
 	access_key  ="__storagekey__"
 	}
 	}
+resource "random_id" "server" {
+  keepers = {
+    azi_id = 1
+  }
+
+  byte_length = 8
+}
 resource "azurerm_resource_group" "dev" {
   name     = "aelementterraform"
   location = "West Us"
@@ -24,6 +31,14 @@ resource "azurerm_app_service_plan" "dev" {
 }
 resource "azurerm_app_service" "dev" {
   name                = "__appservicename__"
+  location            = "${azurerm_resource_group.dev.location}"
+  resource_group_name = "${azurerm_resource_group.dev.name}"
+  app_service_plan_id = "${azurerm_app_service_plan.dev.id}"
+
+}
+resource "azurerm_app_service_slot" "dev" {
+  name                = "${random_id.server.hex}"
+  app_service_name    = "${azurerm_app_service.dev.name}"
   location            = "${azurerm_resource_group.dev.location}"
   resource_group_name = "${azurerm_resource_group.dev.name}"
   app_service_plan_id = "${azurerm_app_service_plan.dev.id}"
