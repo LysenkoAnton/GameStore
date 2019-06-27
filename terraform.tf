@@ -7,6 +7,7 @@
 	access_key  ="__storagekey__"
 	}
 	}
+
 resource "random_id" "server" {
   keepers = {
     azi_id = 1
@@ -14,6 +15,7 @@ resource "random_id" "server" {
 
   byte_length = 8
 }
+
 resource "azurerm_resource_group" "dev" {
   name     = "aelementterraform"
   location = "West Us"
@@ -27,8 +29,9 @@ resource "azurerm_app_service_plan" "dev" {
   sku {
     tier = "Standard"
     size = "S1"
-	}
+  }
 }
+
 resource "azurerm_app_service" "dev" {
   name                = "__appservicename__"
   location            = "${azurerm_resource_group.dev.location}"
