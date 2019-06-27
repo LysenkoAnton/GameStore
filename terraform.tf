@@ -31,7 +31,6 @@ resource "azurerm_app_service_plan" "dev" {
     size = "S1"
   }
 }
-
 resource "azurerm_app_service" "dev" {
   name                = "__appservicename__"
   location            = "${azurerm_resource_group.dev.location}"
