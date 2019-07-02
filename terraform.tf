@@ -61,8 +61,4 @@ resource "azurerm_sql_database" "dev" {
   resource_group_name = "${azurerm_resource_group.dev.name}"
   location            = "${azurerm_resource_group.dev.location}"
   server_name         = "${azurerm_sql_server.dev.name}"
-
-  tags = {
-    environment = "production"
-  }
 }
