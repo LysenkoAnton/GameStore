@@ -46,3 +46,23 @@ resource "azurerm_app_service_slot" "dev" {
   app_service_plan_id = "${azurerm_app_service_plan.dev.id}"
 
 }
+
+resource "azurerm_sql_server" "dev" {
+  name                         = "gamestore-server"
+  resource_group_name          = "${azurerm_resource_group.dev.name}"
+  location                     = "${azurerm_resource_group.dev.location}"
+  version                      = "12.0"
+  administrator_login          = "dbadmin"
+  administrator_login_password = "$(Password)"
+}
+
+resource "azurerm_sql_database" "test" {
+  name                = "gamestore"
+  resource_group_name = "${azurerm_resource_group.dev.name}"
+  location            = "${azurerm_resource_group.dev.location}"
+  server_name         = "${azurerm_sql_server.dev.name}"
+
+  tags = {
+    environment = "production"
+  }
+}
