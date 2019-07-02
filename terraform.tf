@@ -49,7 +49,7 @@ resource "azurerm_app_service_slot" "dev" {
 }
 
 resource "azurerm_sql_server" "dev" {
-  name                         = "gamestore-server"
+  name                         = "gamestore-server1"
   resource_group_name          = "${azurerm_resource_group.dev.name}"
   location                     = "${azurerm_resource_group.dev.location}"
   version                      = "12.0"
