@@ -31,6 +31,7 @@ resource "azurerm_app_service_plan" "dev" {
     size = "S1"
   }
 }
+
 resource "azurerm_app_service" "dev" {
   name                = "__appservicename__"
   location            = "${azurerm_resource_group.dev.location}"
@@ -59,10 +60,6 @@ resource "azurerm_sql_server" "dev" {
 resource "azurerm_sql_database" "dev" {
   name                = "gamestore"
   resource_group_name = "${azurerm_resource_group.dev.name}"
-  location            = "${azurerm_sql_server.dev.location}"
+  location            = "West US"
   server_name         = "${azurerm_sql_server.dev.name}"
-  
-  tags = {
-    environment = "production"
-  }
 }
