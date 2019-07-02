@@ -59,7 +59,7 @@ resource "azurerm_sql_server" "dev" {
 resource "azurerm_sql_database" "dev" {
   name                = "gamestore"
   resource_group_name = "${azurerm_resource_group.dev.name}"
-  location            = "${azurerm_resource_group.dev.location}"
+  location            = "${azurerm_sql_server.dev.location}"
   server_name         = "${azurerm_sql_server.dev.name}"
 
 	}
