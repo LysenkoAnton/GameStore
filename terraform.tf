@@ -58,8 +58,17 @@ resource "azurerm_sql_server" "dev" {
 }
 
 resource "azurerm_sql_database" "dev" {
-  name                = "gamestore"
+  name                = "gamestorter"
   resource_group_name = "${azurerm_resource_group.dev.name}"
   location            = "West US"
   server_name         = "${azurerm_sql_server.dev.name}"
+  edition             = "Basic"
+}
+
+resource "azurerm_sql_firewall_rule" "dev" {
+  name                = "FirewallRule1"
+  resource_group_name = "${azurerm_resource_group.dev.name}"
+  server_name         = "${azurerm_sql_server.dev.name}"
+  start_ip_address    = "0.0.0.0"
+  end_ip_address      = "0.0.0.0"
 }
